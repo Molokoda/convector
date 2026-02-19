@@ -6,7 +6,7 @@ import { Text, StyleSheet, Pressable } from 'react-native';
 import { DateData } from 'react-native-calendars';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { DatePicker, theme } from '@/shared';
+import { DatePicker, PageTitle, theme } from '@/shared';
 
 export const Courses = () => {
   const bottomSheetRef = useRef<BottomSheet>(null);
@@ -25,6 +25,7 @@ export const Courses = () => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <PageTitle title="Курсы НБРБ" />
       <Pressable
         style={styles.datePickerContainer}
         onPress={handleOpenBottomSheet}

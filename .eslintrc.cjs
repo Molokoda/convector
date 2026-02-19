@@ -29,6 +29,7 @@ module.exports = {
     },
   },
   rules: {
+    'react/prop-types': 'off',
     'semi': ['error', 'always'],
     'import/order': [
       'error',

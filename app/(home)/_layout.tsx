@@ -1,9 +1,19 @@
-import { Tabs } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { Tabs } from 'expo-router';
+
+import { theme } from '@/shared';
 
 export default function RootLayout() {
   return (
-    <Tabs>
+    <Tabs
+      screenOptions={{
+        tabBarStyle: {
+          backgroundColor: theme.colors.background,
+        },
+      }}
+      initialRouteName="courses"
+    >
+      <Tabs.Screen name="index" options={{ href: null, headerShown: false }} />
       <Tabs.Screen
         name="courses"
         options={{

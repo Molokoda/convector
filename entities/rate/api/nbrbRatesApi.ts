@@ -1,3 +1,12 @@
+import { Rate } from '@/entities';
+
+export class NbrbApiError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = 'NbrbApiError';
+  }
+}
+
 export class NbrbRatesApi {
   private readonly baseUrl = 'https://api.nbrb.by/exrates/rates';
 
@@ -6,10 +15,12 @@ export class NbrbRatesApi {
       const response = await fetch(
         `${this.baseUrl}/?periodicity=0&ondate=${date}`,
       );
-      const data = await response.json();
+      const data: Rate[] = await response.json();
       return data;
     } catch (error) {
-      throw error;
+      throw new NbrbApiError(
+        error instanceof Error ? error.message : 'Ошибка сети',
+      );
     }
   }
 
@@ -21,7 +32,9 @@ export class NbrbRatesApi {
       const data = await response.json();
       return data;
     } catch (error) {
-      throw error;
+      throw new NbrbApiError(
+        error instanceof Error ? error.message : 'Ошибка сети',
+      );
     }
   }
 }

@@ -18,20 +18,20 @@ export default function RootLayout() {
         name="courses"
         options={{
           headerShown: false,
-          title: 'Courses',
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="bar-chart" color={color} size={size} />
           ),
+          tabBarLabel: 'Курсы',
         }}
       />
       <Tabs.Screen
         name="convector"
         options={{
           headerShown: false,
-          title: 'Convector',
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="swap-horizontal" color={color} size={size} />
           ),
+          tabBarLabel: 'Конвертер',
         }}
       />
     </Tabs>

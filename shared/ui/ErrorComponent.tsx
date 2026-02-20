@@ -3,7 +3,7 @@ import { FC, memo } from 'react';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { View, Text, StyleSheet } from 'react-native';
 
-import { theme } from '../config';
+import { theme } from '@/shared';
 
 interface ErrorComponentProps {
   text: string;

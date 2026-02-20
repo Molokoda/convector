@@ -4,7 +4,7 @@ import BottomSheet, { BottomSheetView } from '@gorhom/bottom-sheet';
 import { StyleSheet } from 'react-native';
 import { Calendar, DateData } from 'react-native-calendars';
 
-import { theme } from '../config';
+import { theme } from '@/shared';
 
 interface DatePickerProps {
   onDayPick: (date: DateData) => void;

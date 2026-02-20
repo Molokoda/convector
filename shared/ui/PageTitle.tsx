@@ -1,16 +1,19 @@
 import { FC, memo } from 'react';
 
-import { Text, StyleSheet, View } from 'react-native';
+import { Text, StyleSheet, View, StyleProp, ViewStyle } from 'react-native';
 
 import { theme } from '@/shared';
 
 interface PageTitleProps {
   title: string;
+  containerStyle?: StyleProp<ViewStyle>;
 }
 
-const PageTitleBase: FC<PageTitleProps> = ({ title }) => {
+const PageTitleBase: FC<PageTitleProps> = (props) => {
+  const { title, containerStyle } = props;
+
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, containerStyle]}>
       <Text style={styles.text}>{title}</Text>
     </View>
   );
@@ -20,11 +23,9 @@ export const PageTitle = memo(PageTitleBase);
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 16,
-    marginBottom: 24,
-    alignItems: 'center',
     justifyContent: 'center',
     width: '100%',
+    marginTop: 16,
   },
   text: {
     color: theme.colors.text,

@@ -7,7 +7,7 @@ export class NbrbApiError extends Error {
   }
 }
 
-export class NbrbRatesApi {
+class NbrbRatesApi {
   private readonly baseUrl = 'https://api.nbrb.by/exrates/rates';
 
   async getRates(date: string) {
@@ -38,3 +38,5 @@ export class NbrbRatesApi {
     }
   }
 }
+
+export const nbrbRatesApi = new NbrbRatesApi();

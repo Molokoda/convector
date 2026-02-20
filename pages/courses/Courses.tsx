@@ -53,14 +53,14 @@ export const Courses = () => {
 
   useEffect(() => {
     handleGetCourses();
-    // Нужен только для первого рендера
+    // Намеренно только при монтировании компонента
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <SafeAreaView style={styles.container}>
       <PageTitle
-        title="Выберете Дату"
+        title="Выберите дату"
         containerStyle={styles.datePickerTitle}
       />
       <Pressable

@@ -21,7 +21,7 @@ const CourseBase: FC<CourseProps> = (props) => {
         <Text style={styles.littleTitle}>{name}</Text>
       </View>
       <View style={styles.rightContainer}>
-        <Text style={styles.title}>{`${officialRate} BYN`}</Text>
+        <Text style={styles.title}>{`${officialRate.toFixed(2)} BYN`}</Text>
         <Text style={styles.littleTitle}>{`Белорусский рубль`}</Text>
       </View>
     </View>

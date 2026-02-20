@@ -3,7 +3,7 @@ import { Tabs } from 'expo-router';
 
 import { theme } from '@/shared';
 
-export default function RootLayout() {
+export default function HomeLayout() {
   return (
     <Tabs
       screenOptions={{

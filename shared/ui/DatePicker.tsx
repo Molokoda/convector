@@ -1,7 +1,10 @@
 import { memo } from 'react';
 
 import BottomSheet, { BottomSheetView } from '@gorhom/bottom-sheet';
+import { StyleSheet } from 'react-native';
 import { Calendar, DateData } from 'react-native-calendars';
+
+import { theme } from '../config';
 
 interface DatePickerProps {
   onDayPick: (date: DateData) => void;
@@ -17,11 +20,20 @@ const DatePickerBase: React.FC<DatePickerProps> = (props) => {
       snapPoints={['25%', '50%']}
       index={-1}
       enablePanDownToClose
+      backgroundStyle={styles.background}
     >
       <BottomSheetView>
         <Calendar
           maxDate={new Date().toISOString().split('T')[0]}
           onDayPress={onDayPick}
+          theme={{
+            calendarBackground: theme.colors.surface,
+            dayTextColor: theme.colors.text,
+            monthTextColor: theme.colors.text,
+            todayTextColor: theme.colors.text,
+            textDisabledColor: theme.colors.textMuted,
+            arrowColor: theme.colors.text,
+          }}
         />
       </BottomSheetView>
     </BottomSheet>
@@ -29,3 +41,9 @@ const DatePickerBase: React.FC<DatePickerProps> = (props) => {
 };
 
 export const DatePicker = memo(DatePickerBase);
+
+const styles = StyleSheet.create({
+  background: {
+    backgroundColor: theme.colors.surface,
+  },
+});

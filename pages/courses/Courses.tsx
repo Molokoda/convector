@@ -1,8 +1,7 @@
 import { useState, useRef, useCallback, useEffect } from 'react';
 
-import Ionicons from '@expo/vector-icons/Ionicons';
 import BottomSheet from '@gorhom/bottom-sheet';
-import { Text, StyleSheet, Pressable, FlatList } from 'react-native';
+import { StyleSheet, FlatList } from 'react-native';
 import { DateData } from 'react-native-calendars';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -15,6 +14,7 @@ import {
   Separator,
   ErrorComponent,
   EmptyComponent,
+  DateButton,
 } from '@/shared';
 
 import { Course } from './ui';
@@ -67,13 +67,7 @@ export const Courses = () => {
         title="Выберите дату"
         containerStyle={styles.datePickerTitle}
       />
-      <Pressable
-        style={styles.datePickerContainer}
-        onPress={handleOpenBottomSheet}
-      >
-        <Ionicons name="calendar" size={24} color={theme.colors.text} />
-        <Text style={styles.datePickerText}>{selectedDate}</Text>
-      </Pressable>
+      <DateButton date={selectedDate} onPress={handleOpenBottomSheet} />
       <CustomButton
         onPress={handleGetCourses}
         text="Получить курсы"
@@ -112,21 +106,6 @@ const styles = StyleSheet.create({
   datePickerTitle: {
     alignItems: 'flex-start',
     marginBottom: 16,
-  },
-  datePickerContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    width: '100%',
-    borderWidth: 1,
-    padding: 16,
-    borderRadius: 10,
-    borderColor: theme.colors.textMuted,
-  },
-  datePickerText: {
-    color: theme.colors.text,
-    fontSize: 16,
-    fontWeight: 'bold',
   },
   coursesTitle: {
     alignItems: 'flex-start',

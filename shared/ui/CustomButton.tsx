@@ -1,19 +1,30 @@
 import { FC, memo } from 'react';
 
-import { Pressable, PressableProps, StyleSheet, Text } from 'react-native';
+import {
+  Pressable,
+  PressableProps,
+  StyleSheet,
+  Text,
+  ActivityIndicator,
+} from 'react-native';
 
 import { theme } from '../config';
 
 interface CustomButtonProps extends PressableProps {
   text: string;
+  isLoading?: boolean;
 }
 
 const CustomButtonBase: FC<CustomButtonProps> = (props) => {
-  const { text, ...restProps } = props;
+  const { text, isLoading = false, ...restProps } = props;
 
   return (
-    <Pressable {...restProps} style={styles.container}>
-      <Text style={styles.text}>{text}</Text>
+    <Pressable disabled={isLoading} {...restProps} style={styles.container}>
+      {isLoading ? (
+        <ActivityIndicator size="small" color={theme.colors.text} />
+      ) : (
+        <Text style={styles.text}>{text}</Text>
+      )}
     </Pressable>
   );
 };
@@ -29,6 +40,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: 16,
+    minHeight: 55,
   },
   text: {
     color: theme.colors.text,

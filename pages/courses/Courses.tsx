@@ -2,13 +2,7 @@ import { useState, useRef, useCallback, useEffect } from 'react';
 
 import Ionicons from '@expo/vector-icons/Ionicons';
 import BottomSheet from '@gorhom/bottom-sheet';
-import {
-  Text,
-  StyleSheet,
-  Pressable,
-  FlatList,
-  ActivityIndicator,
-} from 'react-native';
+import { Text, StyleSheet, Pressable, FlatList } from 'react-native';
 import { DateData } from 'react-native-calendars';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -83,9 +77,6 @@ export const Courses = () => {
       />
       <PageTitle title="Курсы НБРБ" containerStyle={styles.coursesTitle} />
       {error && <ErrorComponent text={error} />}
-      {isLoading && (
-        <ActivityIndicator size="large" color={theme.colors.primary} />
-      )}
       {!isLoading && !error && (
         <FlatList
           data={courses}

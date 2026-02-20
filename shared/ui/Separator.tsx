@@ -2,7 +2,7 @@ import { memo } from 'react';
 
 import { View, StyleSheet } from 'react-native';
 
-import { theme } from '@/shared';
+import { theme } from '../config/theme';
 
 const SeparatorBase = () => {
   return <View style={styles.separator} />;

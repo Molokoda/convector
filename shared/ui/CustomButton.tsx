@@ -8,7 +8,7 @@ import {
   ActivityIndicator,
 } from 'react-native';
 
-import { theme } from '@/shared';
+import { theme } from '../config/theme';
 
 interface CustomButtonProps extends PressableProps {
   text: string;

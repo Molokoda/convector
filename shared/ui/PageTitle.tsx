@@ -2,7 +2,7 @@ import { FC, memo } from 'react';
 
 import { Text, StyleSheet, View, StyleProp, ViewStyle } from 'react-native';
 
-import { theme } from '@/shared';
+import { theme } from '../config/theme';
 
 interface PageTitleProps {
   title: string;

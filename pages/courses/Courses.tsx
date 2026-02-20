@@ -15,6 +15,8 @@ import {
   ErrorComponent,
   EmptyComponent,
   DateButton,
+  getTodayDateString,
+  useCurrenciesStore,
 } from '@/shared';
 
 import { Course } from './ui';
@@ -24,9 +26,9 @@ export const Courses = () => {
   const [error, setError] = useState<string>('');
   const [isLoading, setIsLoading] = useState(false);
   const bottomSheetRef = useRef<BottomSheet>(null);
-  const [selectedDate, setSelectedDate] = useState<string>(
-    new Date().toISOString().split('T')[0],
-  );
+  const [selectedDate, setSelectedDate] =
+    useState<string>(getTodayDateString());
+  const { setCurrencies } = useCurrenciesStore();
 
   const handleDayPick = useCallback((date: DateData) => {
     setSelectedDate(date.dateString);
@@ -43,13 +45,16 @@ export const Courses = () => {
       setIsLoading(true);
       const courses = await nbrbRatesApi.getRates(selectedDate);
       setCourses(courses);
+      if (selectedDate === getTodayDateString()) {
+        setCurrencies(courses);
+      }
     } catch (error) {
       setError(error instanceof Error ? error.message : 'Ошибка сети');
       setCourses([]);
     } finally {
       setIsLoading(false);
     }
-  }, [selectedDate]);
+  }, [selectedDate, setCurrencies]);
 
   const renderEmptyComponent = useCallback(() => {
     return <EmptyComponent text="Курсы не найдены" />;

@@ -10,6 +10,8 @@ export default function HomeLayout() {
         tabBarStyle: {
           backgroundColor: theme.colors.background,
         },
+        tabBarActiveTintColor: theme.colors.primary,
+        tabBarInactiveTintColor: theme.colors.textMuted,
       }}
       initialRouteName="courses"
     >
@@ -22,6 +24,16 @@ export default function HomeLayout() {
             <Ionicons name="bar-chart" color={color} size={size} />
           ),
           tabBarLabel: 'Курсы',
+        }}
+      />
+      <Tabs.Screen
+        name="history"
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="trending-up" color={color} size={size} />
+          ),
+          tabBarLabel: 'История',
         }}
       />
       <Tabs.Screen

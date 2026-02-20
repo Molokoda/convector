@@ -1,4 +1,4 @@
-import { Rate } from '@/entities';
+import { Rate, RateHistory } from '@/entities';
 
 export class NbrbApiError extends Error {
   constructor(message: string) {
@@ -29,7 +29,7 @@ class NbrbRatesApi {
       const response = await fetch(
         `${this.baseUrl}/dynamics/${cur_id}?startdate=${startDate}&enddate=${endDate}`,
       );
-      const data = await response.json();
+      const data: RateHistory[] = await response.json();
       return data;
     } catch (error) {
       throw new NbrbApiError(

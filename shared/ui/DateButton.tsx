@@ -3,7 +3,7 @@ import { FC, memo } from 'react';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Pressable, Text, StyleSheet } from 'react-native';
 
-import { theme } from '@/shared';
+import { theme } from '../config/theme';
 
 interface DateButtonProps {
   date: string;

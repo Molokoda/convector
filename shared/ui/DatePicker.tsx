@@ -4,15 +4,16 @@ import BottomSheet, { BottomSheetView } from '@gorhom/bottom-sheet';
 import { StyleSheet } from 'react-native';
 import { Calendar, DateData } from 'react-native-calendars';
 
-import { theme } from '@/shared';
+import { theme } from '../config/theme';
 
 interface DatePickerProps {
   onDayPick: (date: DateData) => void;
   bottomSheetRef: React.RefObject<BottomSheet | null>;
+  maxDate?: string;
 }
 
 const DatePickerBase: React.FC<DatePickerProps> = (props) => {
-  const { onDayPick, bottomSheetRef } = props;
+  const { onDayPick, bottomSheetRef, maxDate } = props;
 
   return (
     <BottomSheet
@@ -24,7 +25,7 @@ const DatePickerBase: React.FC<DatePickerProps> = (props) => {
     >
       <BottomSheetView>
         <Calendar
-          maxDate={new Date().toISOString().split('T')[0]}
+          maxDate={maxDate || new Date().toISOString().split('T')[0]}
           onDayPress={onDayPick}
           theme={{
             calendarBackground: theme.colors.surface,

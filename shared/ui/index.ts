@@ -5,3 +5,6 @@ export * from './Separator';
 export * from './ErrorComponent';
 export * from './EmptyComponent';
 export * from './DateButton';
+export * from './CurrencyItem';
+export * from './CurrencyPicker';
+export * from './CurrencyButton';

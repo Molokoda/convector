@@ -1,15 +1,21 @@
-import { memo } from 'react';
+import { FC, memo } from 'react';
 
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { View, Text, StyleSheet } from 'react-native';
 
 import { theme } from '@/shared';
 
-const EmptyComponentBase = () => {
+interface EmptyComponentProps {
+  text: string;
+}
+
+const EmptyComponentBase: FC<EmptyComponentProps> = (props) => {
+  const { text } = props;
+
   return (
     <View style={styles.container}>
       <Ionicons name="folder-open" size={64} color={theme.colors.text} />
-      <Text style={styles.text}>Нет данных</Text>
+      <Text style={styles.text}>{text}</Text>
     </View>
   );
 };

@@ -51,6 +51,10 @@ export const Courses = () => {
     }
   }, [selectedDate]);
 
+  const renderEmptyComponent = useCallback(() => {
+    return <EmptyComponent text="Курсы не найдены" />;
+  }, []);
+
   useEffect(() => {
     handleGetCourses();
     // Намеренно только при монтировании компонента
@@ -81,7 +85,7 @@ export const Courses = () => {
         <FlatList
           data={courses}
           ItemSeparatorComponent={Separator}
-          ListEmptyComponent={<EmptyComponent />}
+          ListEmptyComponent={renderEmptyComponent}
           renderItem={({ item }) => (
             <Course
               scale={item.Cur_Scale}

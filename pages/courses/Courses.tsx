@@ -44,6 +44,7 @@ export const Courses = () => {
   }, []);
 
   const handleGetCourses = useCallback(async () => {
+    setError('');
     try {
       setIsLoading(true);
       const courses = await nbrbRatesApi.getRates(selectedDate);

@@ -68,17 +68,14 @@ export const Courses = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <PageTitle
-        title="Выберите дату"
-        containerStyle={styles.datePickerTitle}
-      />
+      <PageTitle title="Выберите дату" />
       <DateButton date={selectedDate} onPress={handleOpenBottomSheet} />
       <CustomButton
         onPress={handleGetCourses}
         text="Получить курсы"
         isLoading={isLoading}
       />
-      <PageTitle title="Курсы НБРБ" containerStyle={styles.coursesTitle} />
+      <PageTitle title="Курсы НБРБ" />
       {error && <ErrorComponent text={error} />}
       {!isLoading && !error && (
         <FlatList
@@ -107,12 +104,5 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: theme.colors.background,
     paddingHorizontal: 16,
-  },
-  datePickerTitle: {
-    alignItems: 'flex-start',
-    marginBottom: 16,
-  },
-  coursesTitle: {
-    alignItems: 'flex-start',
   },
 });

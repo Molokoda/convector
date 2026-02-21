@@ -42,5 +42,3 @@ npm run ios
 | `npm start`       | Запуск Metro bundler и Expo |
 | `npm run android` | Сборка и запуск на Android  |
 | `npm run ios`     | Сборка и запуск на iOS      |
-| `npm run web`     | Запуск веб-версии           |
-| `npm run lint`    | Проверка кода ESLint        |

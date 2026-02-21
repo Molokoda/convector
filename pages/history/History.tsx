@@ -74,6 +74,7 @@ export const History = () => {
 
   const handleGetHistory = useCallback(async () => {
     try {
+      setIsLoading(true);
       const history = await nbrbRatesApi.getRateHistory(
         selectedCurrency.Cur_ID,
         startDate,

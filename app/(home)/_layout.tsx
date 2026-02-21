@@ -2,11 +2,14 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { Tabs } from 'expo-router';
 
 import { theme } from '@/shared';
+import { DeviceData } from '@/shared/ui';
 
 export default function HomeLayout() {
   return (
     <Tabs
       screenOptions={{
+        headerShown: true,
+        header: () => <DeviceData />,
         tabBarStyle: {
           backgroundColor: theme.colors.background,
         },
@@ -19,7 +22,6 @@ export default function HomeLayout() {
       <Tabs.Screen
         name="courses"
         options={{
-          headerShown: false,
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="bar-chart" color={color} size={size} />
           ),
@@ -29,7 +31,6 @@ export default function HomeLayout() {
       <Tabs.Screen
         name="history"
         options={{
-          headerShown: false,
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="trending-up" color={color} size={size} />
           ),
@@ -39,7 +40,6 @@ export default function HomeLayout() {
       <Tabs.Screen
         name="convector"
         options={{
-          headerShown: false,
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="swap-horizontal" color={color} size={size} />
           ),

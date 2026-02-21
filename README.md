@@ -7,7 +7,7 @@
 ## Требования
 
 - Node.js 18+
-- npm или yarn
+- npm
 - Для сборки под Android: Android Studio и настроенный эмулятор/устройство
 - Для сборки под iOS: Xcode (только macOS)
 

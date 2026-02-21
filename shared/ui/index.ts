@@ -8,3 +8,4 @@ export * from './DateButton';
 export * from './CurrencyItem';
 export * from './CurrencyPicker';
 export * from './CurrencyButton';
+export * from './DeviceData';

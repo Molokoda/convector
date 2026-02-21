@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback, useEffect } from 'react';
 
 import BottomSheet from '@gorhom/bottom-sheet';
 import { View, StyleSheet, Dimensions } from 'react-native';
@@ -18,11 +18,13 @@ import {
   CurrencyPicker,
   useCurrenciesStore,
   CurrencyButton,
+  ErrorComponent,
 } from '@/shared';
 
 export const History = () => {
   const [lineData, setLineData] = useState<lineDataItem[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string>('');
   const startBottomSheetRef = useRef<BottomSheet>(null);
   const endBottomSheetRef = useRef<BottomSheet>(null);
   const currencyBottomSheetRef = useRef<BottomSheet>(null);
@@ -73,6 +75,7 @@ export const History = () => {
   );
 
   const handleGetHistory = useCallback(async () => {
+    setError('');
     try {
       setIsLoading(true);
       const history = await nbrbRatesApi.getRateHistory(
@@ -94,11 +97,18 @@ export const History = () => {
       });
       setLineData(rateHistory);
     } catch (error) {
-      console.error(error);
+      setError(error instanceof Error ? error.message : 'Ошибка сети');
+      setLineData([]);
     } finally {
       setIsLoading(false);
     }
   }, [startDate, endDate, selectedCurrency]);
+
+  useEffect(() => {
+    handleGetHistory();
+    // Намеренно только при монтировании компонента
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -116,20 +126,23 @@ export const History = () => {
         text="Получить историю"
         isLoading={isLoading}
       />
-      <View style={styles.chartContainer}>
-        <LineChart
-          data={lineData}
-          color={theme.colors.primary}
-          dataPointsColor={theme.colors.primary}
-          textColor1={theme.colors.text}
-          xAxisColor={theme.colors.textMuted}
-          yAxisColor={theme.colors.textMuted}
-          yAxisTextStyle={{ color: theme.colors.textMuted }}
-          xAxisLabelTextStyle={{ color: theme.colors.textMuted }}
-          width={Dimensions.get('window').width - 100}
-          xAxisTextNumberOfLines={2}
-        />
-      </View>
+      {error && <ErrorComponent text={error} />}
+      {!isLoading && !error && (
+        <View style={styles.chartContainer}>
+          <LineChart
+            data={lineData}
+            color={theme.colors.primary}
+            dataPointsColor={theme.colors.primary}
+            textColor1={theme.colors.text}
+            xAxisColor={theme.colors.textMuted}
+            yAxisColor={theme.colors.textMuted}
+            yAxisTextStyle={{ color: theme.colors.textMuted }}
+            xAxisLabelTextStyle={{ color: theme.colors.textMuted }}
+            width={Dimensions.get('window').width - 100}
+            xAxisTextNumberOfLines={2}
+          />
+        </View>
+      )}
       <DatePicker
         onDayPick={handleStartDayPick}
         bottomSheetRef={startBottomSheetRef}

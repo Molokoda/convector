@@ -1,0 +1,1 @@
+export { useCurrenciesStore } from './currenciesStore';

@@ -15,9 +15,13 @@ class NbrbRatesApi {
       const response = await fetch(
         `${this.baseUrl}/?periodicity=0&ondate=${date}`,
       );
+      if (!response.ok) {
+        throw new NbrbApiError('Не удалось получить курсы');
+      }
       const data: Rate[] = await response.json();
       return data;
     } catch (error) {
+      if (error instanceof NbrbApiError) throw error;
       throw new NbrbApiError(
         error instanceof Error ? error.message : 'Ошибка сети',
       );
@@ -29,9 +33,13 @@ class NbrbRatesApi {
       const response = await fetch(
         `${this.baseUrl}/dynamics/${cur_id}?startdate=${startDate}&enddate=${endDate}`,
       );
+      if (!response.ok) {
+        throw new NbrbApiError('Не удалось получить историю курса');
+      }
       const data: RateHistory[] = await response.json();
       return data;
     } catch (error) {
+      if (error instanceof NbrbApiError) throw error;
       throw new NbrbApiError(
         error instanceof Error ? error.message : 'Ошибка сети',
       );
